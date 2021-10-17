@@ -57,16 +57,14 @@ string for_correct_text(string text){
     for(int i = 0; i < text.size(); i++){
         if(text[i] == 'J') text[i] = 'I';
     }
-    if((text.size() % 2) != 0){
-        text.push_back('X');
-    }
     for (int i = 0; i < text.size(); i += 2) {
-        if (text[i] == text[i + 1]) text.insert(i + 1, "X");
+        if (text[i] == text[i + 1]) {
+            text.insert(i + 1, "X");
+        }
     }
     if((text.size() % 2) != 0){
         text.push_back('X');
     }
-
     return text;
 
 }
@@ -85,15 +83,21 @@ string check_position(char a, char b){
                 b_pos.push_back(i);
                 b_pos.push_back(j);
             }
-
         }
     }
-    if(a_pos[0] == b_pos[0]){  //他們在同一行
-        if(a_pos[0] == 4){
+
+
+    // 同一個位置的問題 !!!
+    if(a == 'X' && b == 'X') {
+        a = 'Y';
+        b = 'Y';
+    }
+    else if(a_pos[0] == b_pos[0]){  //他們在同一行
+        if(a_pos[1] == 4){
             a = table[0][a_pos[0]];
             b = table[b_pos[1] + 1][b_pos[0]];
         }
-        else if(b_pos[0] == 4){
+        else if(b_pos[1] == 4){
             b = table[0][b_pos[0]];
             a = table[a_pos[1] + 1][a_pos[0]];
         }
@@ -103,11 +107,11 @@ string check_position(char a, char b){
         }
     }     
     else if(a_pos[1] == b_pos[1]){  //他們在同一列
-        if(a_pos[1] == 4){
+        if(a_pos[0] == 4){
            a =table[a_pos[1]][0]; 
            b = table[b_pos[1]][b_pos[0] + 1];
         }
-        if(b_pos[1] == 4){
+        if(b_pos[0] == 4){
            b =table[b_pos[1]][0]; 
            a = table[a_pos[1]][a_pos[0] + 1];
         }
@@ -140,15 +144,15 @@ int main(){
     }
     table_for_check(key);
     text = for_correct_text(text);
-
-    for(int i = 0; i < text.size(); i += 2){
-        ans += check_position(text[i], text[i+1]);
-    }
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
             cout << table[i][j] << " "; 
         }
         cout << endl;
+    }
+
+    for(int i = 0; i < text.size(); i += 2){
+        ans += check_position(text[i], text[i+1]);
     }
     cout << "answer :" << ans << endl;
     system("pause");
