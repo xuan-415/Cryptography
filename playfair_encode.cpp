@@ -150,6 +150,6 @@ int main(){
         }
         cout << endl;
     }
-    cout << "answer :" << ans;
+    cout << "answer :" << ans << endl;
     system("pause");
 }
