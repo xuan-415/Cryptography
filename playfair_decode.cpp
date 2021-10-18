@@ -23,7 +23,6 @@ void table_for_check(string key){
         for(int i = 0; i < key.size(); i++){
             if(key[i] == 'J'){
                 key.erase(key.begin() + i);
-                cout << key << endl;
             }
         }
     }
@@ -131,17 +130,21 @@ string check_position(char a, char b){
 }
 
 int main(){
-    string key, text,ans;
-    cout << "key :";
-    cin >> key;
+    string key, text = "apple", ans;
+    cout << "key :  ";
+    getline(cin, key);
     for(int i = 0; i < key.size(); i++){
         key[i] = toupper(key[i]);
     }
-    cout << "text :";
-    cin >> text;
+    cout << "text : ";
+    getline(cin, text);
     for(int i = 0; i < text.size(); i++){
         text[i] = toupper(text[i]);
     }
+    key.erase(std::remove_if(key.begin(), key.end(), isspace), key.end());
+    text.erase(std::remove_if(text.begin(), text.end(), isspace), text.end());
+
+
     table_for_check(key);
     text = for_correct_text(text);
     for(int i = 0; i < 5; i++){
