@@ -93,31 +93,31 @@ string check_position(char a, char b){
         b = table[b_pos[1]][b_pos[0] - 1];
     }
     else if(a_pos[0] == b_pos[0]){  //他們在同一行
-        if(a_pos[1] == 4){
-            a = table[0][a_pos[0]];
-            b = table[b_pos[1] + 1][b_pos[0]];
+        if(a_pos[1] == 0){
+            a = table[4][a_pos[0]];
+            b = table[b_pos[1] - 1][b_pos[0]];
         }
-        else if(b_pos[1] == 4){
-            b = table[0][b_pos[0]];
-            a = table[a_pos[1] + 1][a_pos[0]];
+        else if(b_pos[1] == 0){
+            b = table[4][b_pos[0]];
+            a = table[a_pos[1] - 1][a_pos[0]];
         }
         else {
-            a = table[a_pos[1] + 1][a_pos[0]];
-            b = table[b_pos[1] + 1][b_pos[0]];
+            a = table[a_pos[1] - 1][a_pos[0]];
+            b = table[b_pos[1] - 1][b_pos[0]];
         }
     }     
     else if(a_pos[1] == b_pos[1]){  //他們在同一列
-        if(a_pos[0] == 4){
-           a =table[a_pos[1]][0]; 
-           b = table[b_pos[1]][b_pos[0] + 1];
+        if(a_pos[0] == 0){
+           a =table[a_pos[1]][4]; 
+           b = table[b_pos[1]][b_pos[0] - 1];
         }
-        if(b_pos[0] == 4){
-           b =table[b_pos[1]][0]; 
-           a = table[a_pos[1]][a_pos[0] + 1];
+        if(b_pos[0] == 0){
+           b =table[b_pos[1]][4]; 
+           a = table[a_pos[1]][a_pos[0] - 1];
         }
         else{
-            a = table[a_pos[1]][a_pos[0] + 1];
-            b = table[b_pos[1]][b_pos[0] + 1];
+            a = table[a_pos[1]][a_pos[0] - 1];
+            b = table[b_pos[1]][b_pos[0] - 1];
         }
     }    
     else {
