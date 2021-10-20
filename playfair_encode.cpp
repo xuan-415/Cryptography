@@ -5,6 +5,18 @@
 using namespace std;
 vector<vector<char>> table(5);
 
+void trim(string &s){
+     int index = 0;
+     if( !s.empty())
+     {
+         while( (index = s.find(' ',index)) != string::npos)
+         {
+             s.erase(index,1);
+         }
+     }
+
+ }
+
 void table_for_check(string key){
     bool check_for_I = false;
     string font = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
@@ -111,7 +123,7 @@ string check_position(char a, char b){
            a =table[a_pos[1]][0]; 
            b = table[b_pos[1]][b_pos[0] + 1];
         }
-        if(b_pos[0] == 4){
+        else if(b_pos[0] == 4){
            b =table[b_pos[1]][0]; 
            a = table[a_pos[1]][a_pos[0] + 1];
         }
@@ -142,8 +154,9 @@ int main(){
     for(int i = 0; i < text.size(); i++){
         text[i] = toupper(text[i]);
     }
-    key.erase(std::remove_if(key.begin(), key.end(), isspace), key.end());
-    text.erase(std::remove_if(text.begin(), text.end(), isspace), text.end());
+    trim(key);
+    trim(text);
+
 
     table_for_check(key);
     text = for_correct_text(text);
